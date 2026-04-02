@@ -53,6 +53,7 @@
       <DependentUpon>InventoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="InventoryItem.cs" />
+    <Compile Include="InventoryManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="InventoryForm.resx">
