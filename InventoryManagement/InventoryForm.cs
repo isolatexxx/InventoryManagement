@@ -134,6 +134,30 @@ namespace InventoryManagement
             UpdateItemsList();
         }
 
+        
+
+        // Метод для добавления вещей в тестах
+        public void AddItem(string name, string quantity, string price, string category)
+        {
+            Console.WriteLine($"Строка: имя={name} | количество={quantity} | цена={price} | категория={category}");
+
+            nameTextBox.Text = name;
+            quantityTextBox.Text = quantity;
+            priceTextBox.Text = price;
+            categoryTextBox.Text = category;
+
+            AddItemButton_Click(addItemButton, EventArgs.Empty);
+
+            Console.WriteLine($"Кол-во строчек после клика = {inventoryManager.Items.Count}");
+        }
+        // Метод для проверки кол-ва добавленных вещей
+        public int ReturnItemsCount() { return inventoryManager.Items.Count; }
+
+
+
+
+
+
         private void UpdateItemsList()
         {
             itemsListBox.Items.Clear();
@@ -145,6 +169,10 @@ namespace InventoryManagement
 
         private void AddItemButton_Click(object sender, EventArgs e)
         {
+
+            Console.WriteLine($"\nAddItemButton_Click сработал. Строчка: '{nameTextBox.Text}', " +
+                $"'{quantityTextBox.Text}', '{priceTextBox.Text}', '{categoryTextBox.Text}'");
+
             if (string.IsNullOrEmpty(nameTextBox.Text) ||
                 string.IsNullOrEmpty(quantityTextBox.Text) ||
                 string.IsNullOrEmpty(priceTextBox.Text) ||
@@ -227,7 +255,7 @@ namespace InventoryManagement
                         MessageBox.Show("Введите новое количество!");
                         return;
                     }
-
+                        
                     if (!int.TryParse(quantityTextBox.Text, out int newQuantity))
                     {
                         MessageBox.Show("Неверный формат количества!");
