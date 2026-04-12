@@ -163,7 +163,7 @@ namespace InventoryManagement
             itemsListBox.Items.Clear();
             foreach (var item in inventoryManager.Items)
             {
-                itemsListBox.Items.Add($"{item.Name} - Количество: {item.Quantity} | Цена: {item.Price} руб. | Категория: {item.Category}");
+                itemsListBox.Items.Add($"Название: {item.Name} | Количество: {item.Quantity} | Цена: {item.Price} руб. | Категория: {item.Category}");
             }
         }
 

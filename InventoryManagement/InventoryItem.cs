@@ -18,4 +18,14 @@ public class InventoryItem
         Price = price;
         Category = category;
     }
+
+    public bool IsAvailable ()
+    {
+        return Quantity >= 0 && Price >= 0 && !string.IsNullOrEmpty(Name) && !string.IsNullOrEmpty(Category);
+    }
+
+    public override string ToString ()
+    {
+        return $"Название: {Name} | Количество: {Quantity} | Цена: {Price} руб. | Категория: {Category}";
+    }
 }
