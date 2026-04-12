@@ -50,7 +50,7 @@ namespace InventoryManagement
         private void SaveItems()
         {
             File.WriteAllLines("inventory.txt", Items.Select(i =>
-    $"{i.Name}|{i.Quantity}|{i.Price}|{i.Category}"));
+                $"{i.Name}|{i.Quantity}|{i.Price}|{i.Category}"));
         }
 
         private void LoadItems()
