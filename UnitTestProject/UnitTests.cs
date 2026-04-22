@@ -13,9 +13,10 @@ namespace UnitTestProject
         [TestInitialize]
         public void Setup()
         {
-            form = new InventoryForm(); // каждый тест - создание объекта.
-            // Теперь можно не прописывать создание формы в каждом новом тесте
+            // Удаляем файл хранилища перед созданием формы, чтобы InventoryManager загрузил пустое состояние
             if (File.Exists("inventory.txt")) { File.Delete("inventory.txt"); }
+            form = new InventoryForm(); // каждый тест - создание объекта.
+            
         }
 
         /*
