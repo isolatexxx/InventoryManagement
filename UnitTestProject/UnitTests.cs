@@ -49,11 +49,40 @@ namespace UnitTestProject
         [TestMethod]
         public void AddItem_WrongPrice_Error()
         {
+            // Проверяем парсинг прямо в тесте
+            bool canParse = decimal.TryParse("price", out decimal testPrice);
+            Console.WriteLine($"decimal.TryParse('price') = {canParse}, result = {testPrice}");
+
             form.AddItem("Боксерский шлем", "10", "price", "Бокс");
             Assert.AreEqual(0, form.ReturnItemsCount(), "Строчка с неверной ценой попала в список!");
         }
 
+        // ЮНИТ-ТЕСТЫ 2ЛР
+        // ЮНИТ-ТЕСТЫ 2ЛР
+        // ЮНИТ-ТЕСТЫ 2ЛР
 
+        [TestMethod]
+        public void AddButton_Click_WhenNegativePrice_ShowMessageBoxAndError()
+        { 
+            form.AddItem("Насос для мячей", "6", "-1500", "Обслуживание");
+            Assert.AreEqual(0, form.ReturnItemsCount());
+        }
+
+        [TestMethod]
+        public void AddButton_Click_WhenNegativeQuantity_ShowMessageBoxAndError()
+        {
+            form.AddItem("Лента", "-20", "1000", "Гимнастика");
+            Assert.AreEqual(0, form.ReturnItemsCount());
+        }
+
+        [TestMethod]
+        public void RemoveButton_Click_WhenItemSelected_RemovesProduct()
+        {
+            form.AddItem("Скакалка", "50", "1000", "Бокс");
+            form.SelectItem(0);
+            form.RemoveItem();
+            Assert.AreEqual(0, form.ReturnItemsCount());
+        }
 
 
     }

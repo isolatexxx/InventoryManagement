@@ -151,7 +151,22 @@ namespace InventoryManagement
             Console.WriteLine($"Кол-во строчек после клика = {inventoryManager.Items.Count}");
         }
         // Метод для проверки кол-ва добавленных вещей
-        public int ReturnItemsCount() { return inventoryManager.Items.Count; }
+        public int ReturnItemsCount() 
+        { 
+            return inventoryManager.Items.Count; 
+        }
+        // Метод для выделения объекта 
+        public void SelectItem (int index)
+        {
+            itemsListBox.SetSelected(index, true);
+        }
+        // Метод для удаления товаров
+        public void RemoveItem ()
+        {
+            RemoveItemButton_Click(removeItemButton, EventArgs.Empty);
+        }
+
+
 
 
 
@@ -183,7 +198,8 @@ namespace InventoryManagement
             }
 
             if (!int.TryParse(quantityTextBox.Text, out int quantity) ||
-                !decimal.TryParse(priceTextBox.Text, out decimal price))
+                !decimal.TryParse(priceTextBox.Text, out decimal price) || 
+                quantity < 0 || price < 0)
             {
                 MessageBox.Show("Неверный формат количества или цены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -214,10 +230,10 @@ namespace InventoryManagement
             }
 
             string selectedItem = itemsListBox.SelectedItem.ToString();
-            string[] parts = selectedItem.Split(new[] { '-' }, StringSplitOptions.None);
-            if (parts.Length >= 2)
+            string[] parts = selectedItem.Split(new[] { '|' }, StringSplitOptions.None);
+            if (parts.Length == 4)
             {
-                string name = parts[0].Trim();
+                string name = parts[0].Replace("Название: ", "").Trim();
                 var itemToRemove = inventoryManager.Items.Find(i => i.Name == name);
                 if (itemToRemove != null)
                 {
