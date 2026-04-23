@@ -58,10 +58,6 @@ namespace UnitTestProject
             Assert.AreEqual(0, form.ReturnItemsCount(), "Строчка с неверной ценой попала в список!");
         }
 
-        // ЮНИТ-ТЕСТЫ 2ЛР
-        // ЮНИТ-ТЕСТЫ 2ЛР
-        // ЮНИТ-ТЕСТЫ 2ЛР
-
         [TestMethod]
         public void AddButton_Click_WhenNegativePrice_ShowMessageBoxAndError()
         {
