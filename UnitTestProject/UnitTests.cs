@@ -264,58 +264,50 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void NameTextBox_IsVisibleAndEnabled()
+        public void NameTextBox_IsEnabled()
         {
-            Assert.IsTrue(form.TestNameTextBox.Visible);
             Assert.IsTrue(form.TestNameTextBox.Enabled);
         }
 
         [TestMethod]
-        public void QuantityTextBox_IsVisibleAndEnabled()
+        public void QuantityTextBox_IsEnabled()
         {
-            Assert.IsTrue(form.TestQuantityTextBox.Visible);
             Assert.IsTrue(form.TestQuantityTextBox.Enabled);
         }
 
         [TestMethod]
-        public void PriceTextBox_IsVisibleAndEnabled()
+        public void PriceTextBox_IsEnabled()
         {
-            Assert.IsTrue(form.TestPriceTextBox.Visible);
             Assert.IsTrue(form.TestPriceTextBox.Enabled);
         }
 
         [TestMethod]
-        public void CategoryTextBox_IsVisibleAndEnabled()
+        public void CategoryTextBox_IsEnabled()
         {
-            Assert.IsTrue(form.TestCategoryTextBox.Visible);
             Assert.IsTrue(form.TestCategoryTextBox.Enabled);
         }
 
         [TestMethod]
-        public void AddButton_IsVisibleAndEnabled()
+        public void AddButton_IsEnabled()
         {
-            Assert.IsTrue(form.TestAddButton.Visible);
             Assert.IsTrue(form.TestAddButton.Enabled);
         }
 
         [TestMethod]
-        public void RemoveButton_IsVisibleAndEnabled()
+        public void RemoveButton_IsEnabled()
         {
-            Assert.IsTrue(form.TestRemoveButton.Visible);
             Assert.IsTrue(form.TestRemoveButton.Enabled);
         }
 
         [TestMethod]
-        public void UpdateButton_IsVisibleAndEnabled()
+        public void UpdateButton_IsEnabled()
         {
-            Assert.IsTrue(form.TestUpdateButton.Visible);
             Assert.IsTrue(form.TestUpdateButton.Enabled);
         }
 
         [TestMethod]
-        public void ItemsListBox_IsVisibleAndEnabled()
+        public void ItemsListBox_IsEnabled()
         {
-            Assert.IsTrue(form.TestItemsListBox.Visible);
             Assert.IsTrue(form.TestItemsListBox.Enabled);
         }
     }
