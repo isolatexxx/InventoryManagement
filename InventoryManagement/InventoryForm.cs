@@ -16,33 +16,6 @@ namespace InventoryManagement
     public partial class InventoryForm : Form
     {
         private InventoryManager inventoryManager;
-        //private Label nameLabel;
-        //private Label quantityLabel;
-        //private Label priceLabel;
-        //private Label categoryLabel;
-        //private TextBox nameTextBox;
-        //private TextBox quantityTextBox;
-        //private TextBox priceTextBox;
-        //private TextBox categoryTextBox;
-        //private Button addItemButton;
-        //private Button removeItemButton;
-        //private Button updateItemButton;
-        //private ListBox itemsListBox;
-
-        //public InventoryManager inventoryManager;
-        //public Label nameLabel;
-        //public Label quantityLabel;
-        //public Label priceLabel;
-        //public Label categoryLabel;
-        //public TextBox nameTextBox;
-        //public TextBox quantityTextBox;
-        //public TextBox priceTextBox;
-        //public TextBox categoryTextBox;
-        //public Button addItemButton;
-        //public Button removeItemButton;
-        //public Button updateItemButton;
-        //public ListBox itemsListBox;
-
 
         // для UI тестов (только геттеры)
         public TextBox TestNameTextBox => nameTextBox;
@@ -103,13 +76,6 @@ namespace InventoryManagement
             UpdateItemButton_Click(updateItemButton, EventArgs.Empty);
             Console.WriteLine($"Кол-во строчек после клика = {inventoryManager.Items.Count}");
         }
-
-
-
-
-
-
-
 
         private void UpdateItemsList()
         {
@@ -290,8 +256,5 @@ namespace InventoryManagement
                 priceTextBox.Text = priceStr;
             }
         }
-
-
-
     }
 }
