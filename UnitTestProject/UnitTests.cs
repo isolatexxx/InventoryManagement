@@ -252,6 +252,74 @@ namespace UnitTestProject
         }
     }
 
+    [TestClass]
+    public class UnitTestsUIElements
+    {
+        private InventoryForm form;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            form = new InventoryForm();
+        }
+
+        [TestMethod]
+        public void NameTextBox_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestNameTextBox.Visible);
+            Assert.IsTrue(form.TestNameTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void QuantityTextBox_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestQuantityTextBox.Visible);
+            Assert.IsTrue(form.TestQuantityTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void PriceTextBox_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestPriceTextBox.Visible);
+            Assert.IsTrue(form.TestPriceTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void CategoryTextBox_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestCategoryTextBox.Visible);
+            Assert.IsTrue(form.TestCategoryTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void AddButton_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestAddButton.Visible);
+            Assert.IsTrue(form.TestAddButton.Enabled);
+        }
+
+        [TestMethod]
+        public void RemoveButton_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestRemoveButton.Visible);
+            Assert.IsTrue(form.TestRemoveButton.Enabled);
+        }
+
+        [TestMethod]
+        public void UpdateButton_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestUpdateButton.Visible);
+            Assert.IsTrue(form.TestUpdateButton.Enabled);
+        }
+
+        [TestMethod]
+        public void ItemsListBox_IsVisibleAndEnabled()
+        {
+            Assert.IsTrue(form.TestItemsListBox.Visible);
+            Assert.IsTrue(form.TestItemsListBox.Enabled);
+        }
+    }
+
 
 
 
