@@ -124,9 +124,6 @@ namespace UnitTestProject
         public void AddItem_IsAvailable_IncrorrectData_ReturnFalse()
         {
             var item = new InventoryItem("Test", 0, 0, "");
-            //var result = item.IsAvailable();
-            //Console.WriteLine($"Корректность записи стороки: {result}");
-            //Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -146,11 +143,6 @@ namespace UnitTestProject
         public void AddItem_IsAvailable_WhenPriceIsNegative_ReturnFalse()
         {
             var item = new InventoryItem("Футбольные щитки", 11, -55000, "Футбол");
-            //var result = item.IsAvailable();
-            //var resultString = item.ToString();
-            //Console.WriteLine(resultString);
-            //Console.WriteLine("Корректность записи строки: " + result);
-            //Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -158,11 +150,6 @@ namespace UnitTestProject
         public void AddItem_IsAvailable_WhenQuantityIsNegative_ReturnFalse()
         {
             var item = new InventoryItem("Гимнастические кольца", -5, 99000, "Гимнастика");
-            //var result = item.IsAvailable();
-            //var resultString = item.ToString();
-            //Console.WriteLine(resultString);
-            //Console.WriteLine("Корректность записи строки: " + result);
-            //Assert.IsFalse(result);
         }
     }
 
