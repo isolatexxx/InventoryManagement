@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace InventoryManagement
 {
@@ -19,12 +21,12 @@ namespace InventoryManagement
         private Label priceLabel;
         private Label categoryLabel;
         private TextBox nameTextBox;
-        private TextBox quantityTextBox;
-        private TextBox priceTextBox;
+        public TextBox quantityTextBox;
+        public TextBox priceTextBox;
         private TextBox categoryTextBox;
         private Button addItemButton;
         private Button removeItemButton;
-        private Button updateQuantityButton;
+        private Button updateItemButton;
         private ListBox itemsListBox;
 
         public InventoryForm()
@@ -102,13 +104,13 @@ namespace InventoryManagement
             };
             removeItemButton.Click += RemoveItemButton_Click;
 
-            updateQuantityButton = new Button
+            updateItemButton = new Button
             {
                 Location = new Point(210, 60),
                 Text = "Обновить",
                 Width = 100
             };
-            updateQuantityButton.Click += UpdateQuantityButton_Click;
+            updateItemButton.Click += UpdateItemButton_Click;
 
             itemsListBox = new ListBox
             {
@@ -116,6 +118,7 @@ namespace InventoryManagement
                 Width = 460,
                 Height = 200
             };
+            itemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
 
             Controls.Add(nameTextBox);
             Controls.Add(quantityTextBox);
@@ -123,7 +126,7 @@ namespace InventoryManagement
             Controls.Add(categoryTextBox);
             Controls.Add(addItemButton);
             Controls.Add(removeItemButton);
-            Controls.Add(updateQuantityButton);
+            Controls.Add(updateItemButton);
             Controls.Add(itemsListBox);
             Controls.Add(nameLabel);
             Controls.Add(quantityLabel);
@@ -134,7 +137,11 @@ namespace InventoryManagement
             UpdateItemsList();
         }
 
-        
+        public List<InventoryItem> GetAllItems()
+        {
+            return inventoryManager.Items;
+        }
+
 
         // Метод для добавления вещей в тестах
         public void AddItem(string name, string quantity, string price, string category)
@@ -164,6 +171,13 @@ namespace InventoryManagement
         public void RemoveItem ()
         {
             RemoveItemButton_Click(removeItemButton, EventArgs.Empty);
+        }
+        // Метод для обновления товаров
+        public void UpdateItem ()
+        {
+            Console.WriteLine($"Обновление: количество={quantityTextBox.Text} | цена={priceTextBox.Text}");
+            UpdateItemButton_Click(updateItemButton, EventArgs.Empty);
+            Console.WriteLine($"Кол-во строчек после клика = {inventoryManager.Items.Count}");
         }
 
 
@@ -250,7 +264,7 @@ namespace InventoryManagement
             }
         }
 
-        private void UpdateQuantityButton_Click(object sender, EventArgs e)
+        private void UpdateItemButton_Click(object sender, EventArgs e)
         {
             if (itemsListBox.SelectedIndex == -1)
             {
@@ -259,36 +273,89 @@ namespace InventoryManagement
             }
 
             string selectedItem = itemsListBox.SelectedItem.ToString();
-            string[] parts = selectedItem.Split(new[] { '-' }, StringSplitOptions.None);
-            if (parts.Length >= 2)
+
+            string[] parts = selectedItem.Split('|');
+
+            if (parts.Length >= 4)
             {
-                string name = parts[0].Trim();
+                string name = parts[0].Replace("Название: ", "").Trim();
                 var itemToUpdate = inventoryManager.Items.Find(i => i.Name == name);
-                if (itemToUpdate != null)
+
+                if (itemToUpdate == null)
                 {
-                    if (string.IsNullOrEmpty(quantityTextBox.Text))
-                    {
-                        MessageBox.Show("Введите новое количество!");
-                        return;
-                    }
-                        
+                    MessageBox.Show("Товар не найден!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                bool hasError = false;
+
+                if (!string.IsNullOrEmpty(quantityTextBox.Text))
+                {
                     if (!int.TryParse(quantityTextBox.Text, out int newQuantity))
                     {
-                        MessageBox.Show("Неверный формат количества!");
-                        return;
+                        MessageBox.Show("Неверный формат количества!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        hasError = true;
                     }
-
-                    try
+                    else if (newQuantity < 0)
+                    {
+                        MessageBox.Show("Количество не может быть отрицательным!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        hasError = true;
+                    }
+                    else
                     {
                         inventoryManager.UpdateItemQuantity(itemToUpdate, newQuantity);
-                        UpdateItemsList();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
                     }
                 }
+
+                if (!string.IsNullOrEmpty(priceTextBox.Text) && !hasError)
+                {
+                    if (!decimal.TryParse(priceTextBox.Text, out decimal newPrice))
+                    {
+                        MessageBox.Show("Неверный формат цены!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        hasError = true;
+                    }
+                    else if (newPrice < 0)
+                    {
+                        MessageBox.Show("Цена не может быть отрицательной!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        hasError = true;
+                    }
+                    else
+                    {
+                        inventoryManager.UpdateItemPrice(itemToUpdate, newPrice);
+                    }
+                }
+
+                if (!hasError)
+                {
+                    UpdateItemsList();
+                    quantityTextBox.Clear();
+                    priceTextBox.Clear();
+                    MessageBox.Show("Товар успешно обновлён!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не удалось разобрать данные товара!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (itemsListBox.SelectedIndex == -1) { return; }
+
+            string selectedItem = itemsListBox.SelectedItem.ToString();
+            string[] parts = selectedItem.Split('|');
+
+            if (parts.Length >= 4)
+            {
+                string quantityStr = parts[1].Replace("Количество: ", "").Trim(); // кол-во
+                string priceStr = parts[2].Replace("Цена: ", "").Replace(" руб.", "").Trim(); // цена
+                quantityTextBox.Text = quantityStr;
+                priceTextBox.Text = priceStr;
+            }
+        }
+
+
+
     }
 }

@@ -46,7 +46,7 @@ namespace InventoryManagement
             item.Quantity = newQuantity;
             SaveItems();
         }
-        public void UpdateItemPrice(InventoryItem item, int newPrice)
+        public void UpdateItemPrice(InventoryItem item, decimal newPrice)
         {
             if (item == null)
             {

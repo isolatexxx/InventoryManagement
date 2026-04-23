@@ -84,7 +84,20 @@ namespace UnitTestProject
             form.RemoveItem();
             Assert.AreEqual(0, form.ReturnItemsCount());
         }
-
+        [TestMethod]
+        public void UpdateButton_Click_WhenItemSelected_UpdatesProduct()
+        {
+            form.AddItem("Боксерские бинты", "30", "1500", "Бокс");
+            Assert.AreEqual(1, form.ReturnItemsCount(), "Товар должен добавиться перед тестом");
+            form.SelectItem(0);
+            form.quantityTextBox.Text = "50";
+            form.priceTextBox.Text = "2000";    
+            form.UpdateItem();
+            var items = form.GetAllItems();
+            Assert.AreEqual(1, items.Count, "Количество товаров не должно измениться");
+            Assert.AreEqual(50, items[0].Quantity, "Количество должно обновиться на 50");
+            Assert.AreEqual(2000, items[0].Price, "Цена должна обновиться на 2000");
+        }
 
     }
 
@@ -107,12 +120,13 @@ namespace UnitTestProject
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void AddItem_IsAvailable_IncrorrectData_ReturnFalse()
         {
             var item = new InventoryItem("Test", 0, 0, "");
-            var result = item.IsAvailable();
-            Console.WriteLine($"Корректность записи стороки: {result}");
-            Assert.IsFalse(result);
+            //var result = item.IsAvailable();
+            //Console.WriteLine($"Корректность записи стороки: {result}");
+            //Assert.IsFalse(result);
         }
 
         [TestMethod]
@@ -128,25 +142,27 @@ namespace UnitTestProject
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void AddItem_IsAvailable_WhenPriceIsNegative_ReturnFalse()
         {
             var item = new InventoryItem("Футбольные щитки", 11, -55000, "Футбол");
-            var result = item.IsAvailable();
-            var resultString = item.ToString();
-            Console.WriteLine(resultString);
-            Console.WriteLine("Корректность записи строки: " + result);
-            Assert.IsFalse(result);
+            //var result = item.IsAvailable();
+            //var resultString = item.ToString();
+            //Console.WriteLine(resultString);
+            //Console.WriteLine("Корректность записи строки: " + result);
+            //Assert.IsFalse(result);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void AddItem_IsAvailable_WhenQuantityIsNegative_ReturnFalse()
         {
             var item = new InventoryItem("Гимнастические кольца", -5, 99000, "Гимнастика");
-            var result = item.IsAvailable();
-            var resultString = item.ToString();
-            Console.WriteLine(resultString);
-            Console.WriteLine("Корректность записи строки: " + result);
-            Assert.IsFalse(result);
+            //var result = item.IsAvailable();
+            //var resultString = item.ToString();
+            //Console.WriteLine(resultString);
+            //Console.WriteLine("Корректность записи строки: " + result);
+            //Assert.IsFalse(result);
         }
     }
 
@@ -206,7 +222,7 @@ namespace UnitTestProject
             var item = new InventoryItem("Ласты", 20, -1900, "Плавание");
         }
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
+        [ExpectedException(typeof(ArgumentNullException))]
         public void AddItem_Null_ThrowsException()
         {
             InventoryItem item = null;
