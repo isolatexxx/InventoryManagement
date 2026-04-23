@@ -86,8 +86,8 @@ namespace UnitTestProject
             form.AddItem("Боксерские бинты", "30", "1500", "Бокс");
             Assert.AreEqual(1, form.ReturnItemsCount(), "Товар должен добавиться перед тестом");
             form.SelectItem(0);
-            form.quantityTextBox.Text = "50";
-            form.priceTextBox.Text = "2000";    
+            form.TestQuantityTextBox.Text = "50";
+            form.TestPriceTextBox.Text = "2000";    
             form.UpdateItem();
             var items = form.GetAllItems();
             Assert.AreEqual(1, items.Count, "Количество товаров не должно измениться");
@@ -127,8 +127,8 @@ namespace UnitTestProject
         {
             form.AddItem("Тестовый товар", "10", "100", "Тест");
             form.SelectItem(0);
-            form.quantityTextBox.Text = "";
-            form.priceTextBox.Text = "";
+            form.TestQuantityTextBox.Text = "";
+            form.TestPriceTextBox.Text = "";
             form.UpdateItem(); // MessageBox вылетит об успешном обновлении товара но цена и кол-во останется прежней
             var items = form.GetAllItems();
             Assert.AreEqual(10, items[0].Quantity, "Количество не должно измениться");

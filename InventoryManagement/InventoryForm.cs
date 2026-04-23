@@ -21,8 +21,8 @@ namespace InventoryManagement
         private Label priceLabel;
         private Label categoryLabel;
         private TextBox nameTextBox;
-        public TextBox quantityTextBox;
-        public TextBox priceTextBox;
+        private TextBox quantityTextBox;
+        private TextBox priceTextBox;
         private TextBox categoryTextBox;
         private Button addItemButton;
         private Button removeItemButton;
