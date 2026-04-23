@@ -46,11 +46,20 @@ namespace InventoryManagement
             item.Quantity = newQuantity;
             SaveItems();
         }
+        public void UpdateItemPrice(InventoryItem item, decimal newPrice)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+            item.Price = newPrice;
+            SaveItems();
+        }
 
         private void SaveItems()
         {
             File.WriteAllLines("inventory.txt", Items.Select(i =>
-    $"{i.Name}|{i.Quantity}|{i.Price}|{i.Category}"));
+                $"{i.Name}|{i.Quantity}|{i.Price}|{i.Category}"));
         }
 
         private void LoadItems()
