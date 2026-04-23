@@ -46,6 +46,15 @@ namespace InventoryManagement
             item.Quantity = newQuantity;
             SaveItems();
         }
+        public void UpdateItemPrice(InventoryItem item, int newPrice)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+            item.Price = newPrice;
+            SaveItems();
+        }
 
         private void SaveItems()
         {
