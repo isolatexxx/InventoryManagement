@@ -58,10 +58,6 @@ namespace UnitTestProject
             Assert.AreEqual(0, form.ReturnItemsCount(), "Строчка с неверной ценой попала в список!");
         }
 
-        // ЮНИТ-ТЕСТЫ 2ЛР
-        // ЮНИТ-ТЕСТЫ 2ЛР
-        // ЮНИТ-ТЕСТЫ 2ЛР
-
         [TestMethod]
         public void AddButton_Click_WhenNegativePrice_ShowMessageBoxAndError()
         {
@@ -99,6 +95,45 @@ namespace UnitTestProject
             Assert.AreEqual(2000, items[0].Price, "Цена должна обновиться на 2000");
         }
 
+        // Проверка: Некорректный выбор товара для удаления или обновления. 
+
+        [TestMethod]
+        public void RemoveButton_Click_WhenNoItemSelected_ShowsErrorAndDoesNotRemove()
+        {
+            form.RemoveItem(); // MessageBox вылетит
+            Assert.AreEqual(0, form.ReturnItemsCount(), "Список должен остаться пустым");
+        }
+
+        [TestMethod]
+        public void UpdateButton_Click_WhenNoItemSelected_ShowsErrorAndDoesNotUpdate()
+        {
+            form.UpdateItem(); // MessageBox вылетит
+            Assert.AreEqual(0, form.ReturnItemsCount(), "Список должен остаться пустым");
+        }
+
+        [TestMethod]
+        public void RemoveButton_Click_WhenItemSelectedButAlreadyDeleted_ShowsError()
+        {
+            form.AddItem("Тестовый товар", "10", "100", "Тест");
+            form.SelectItem(0);
+            form.RemoveItem();
+            Assert.AreEqual(0, form.ReturnItemsCount());
+            form.RemoveItem(); // MessageBox вылетит
+            Assert.AreEqual(0, form.ReturnItemsCount());
+        }
+
+        [TestMethod]
+        public void UpdateButton_Click_WhenItemSelectedButFieldsEmpty_ShowsError()
+        {
+            form.AddItem("Тестовый товар", "10", "100", "Тест");
+            form.SelectItem(0);
+            form.quantityTextBox.Text = "";
+            form.priceTextBox.Text = "";
+            form.UpdateItem(); // MessageBox вылетит об успешном обновлении товара но цена и кол-во останется прежней
+            var items = form.GetAllItems();
+            Assert.AreEqual(10, items[0].Quantity, "Количество не должно измениться");
+            Assert.AreEqual(100, items[0].Price, "Цена не должна измениться");
+        }
     }
 
     [TestClass]
