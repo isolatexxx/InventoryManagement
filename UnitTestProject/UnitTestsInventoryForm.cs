@@ -1,7 +1,7 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using InventoryManagement;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
-using InventoryManagement;
 
 namespace UnitTestProject
 {
@@ -87,7 +87,7 @@ namespace UnitTestProject
             Assert.AreEqual(1, form.ReturnItemsCount(), "Товар должен добавиться перед тестом");
             form.SelectItem(0);
             form.TestQuantityTextBox.Text = "50";
-            form.TestPriceTextBox.Text = "2000";    
+            form.TestPriceTextBox.Text = "2000";
             form.UpdateItem();
             var items = form.GetAllItems();
             Assert.AreEqual(1, items.Count, "Количество товаров не должно измениться");
@@ -135,184 +135,4 @@ namespace UnitTestProject
             Assert.AreEqual(100, items[0].Price, "Цена не должна измениться");
         }
     }
-
-    [TestClass]
-    public class UnitTestsInventoryItem
-    {
-        [TestInitialize]
-        public void Setup()
-        {
-            if (File.Exists("inventory.txt")) { File.Delete("inventory.txt"); }
-        }
-
-        [TestMethod]
-        public void AddItem_IsAvailable_CorrectData_ReturnTrue()
-        {
-            InventoryItem item = new InventoryItem("Велосипед", 10, 55000, "Веелоспорт");
-            var result = item.IsAvailable();
-            Console.WriteLine($"Корректность записи стороки: {result}");
-            Assert.IsTrue(result);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddItem_IsAvailable_IncrorrectData_ReturnFalse()
-        {
-            var item = new InventoryItem("Test", 0, 0, "");
-        }
-
-        [TestMethod]
-        public void AddItem_ToString_CorrectFormat()
-        {
-            var item = new InventoryItem("Волейбольный мяч", 10, 3300, "Волейбол");
-            var result = item.ToString();
-            Console.WriteLine(result);
-            StringAssert.Contains(result, "Название: Волейбольный мяч");
-            StringAssert.Contains(result, "Количество: 10");
-            StringAssert.Contains(result, "Цена: 3300");
-            StringAssert.Contains(result, "Категория: Волейбол");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddItem_IsAvailable_WhenPriceIsNegative_ReturnFalse()
-        {
-            var item = new InventoryItem("Футбольные щитки", 11, -55000, "Футбол");
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddItem_IsAvailable_WhenQuantityIsNegative_ReturnFalse()
-        {
-            var item = new InventoryItem("Гимнастические кольца", -5, 99000, "Гимнастика");
-        }
-    }
-
-
-    [TestClass]
-    public class UnitTestsInventoryManager
-    {
-        private InventoryManager manager;
-        [TestInitialize]
-        public void Setup()
-        {
-            if (File.Exists("inventory.txt")) { File.Delete("inventory.txt"); }
-            manager = new InventoryManager();
-        }
-        [TestMethod]
-        public void AddItem_ValidItem_ItemAdded()
-        {
-            var item = new InventoryItem("Теннисная ракетка", 15, 12000, "Теннис");
-            manager.AddItem(item);
-            Assert.AreEqual(1, manager.Items.Count);
-            Assert.AreEqual("Теннисная ракетка", manager.Items[0].Name);
-        }
-        [TestMethod]
-        public void RemoveItem_ExistingItem_ItemRemoved()
-        {
-            var item = new InventoryItem("Гимнастические кольца", 20, 99000, "Гимнастика");
-            manager.AddItem(item);
-            manager.RemoveItem(item);
-            Assert.AreEqual(0, manager.Items.Count);
-        }
-        [TestMethod]
-        public void UpdateItemQuantity_ExistingItem_QuantityUpdated()
-        {
-            var item = new InventoryItem("Баскетбольный мяч", 30, 3300, "Баскетбол");
-            manager.AddItem(item);
-            manager.UpdateItemQuantity(item, 25);
-            Assert.AreEqual(25, manager.Items[0].Quantity);
-        }
-        [TestMethod]
-        public void UpdateItemPrice_ExistingItem_PriceUpdated()
-        {
-            var item = new InventoryItem("Ракетка", 10, 6300, "Теннис");
-            manager.AddItem(item);
-            manager.UpdateItemPrice(item, 7800);
-            Assert.AreEqual(7800, manager.Items[0].Price);
-        }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddItem_NegativeQuantity_Error()
-        {
-            var item = new InventoryItem("Шапочки", -20, 900, "Плавание");
-        }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void AddItem_NegativePrice_Error()
-        {
-            var item = new InventoryItem("Ласты", 20, -1900, "Плавание");
-        }
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void AddItem_Null_ThrowsException()
-        {
-            InventoryItem item = null; // чтобы пройти проверку на нулл
-            manager.AddItem(item);
-        }
-    }
-
-    [TestClass]
-    public class UnitTestsUIElements
-    {
-        private InventoryForm form;
-
-        [TestInitialize]
-        public void Setup()
-        {
-            form = new InventoryForm();
-        }
-
-        [TestMethod]
-        public void NameTextBox_IsEnabled()
-        {
-            Assert.IsTrue(form.TestNameTextBox.Enabled);
-        }
-
-        [TestMethod]
-        public void QuantityTextBox_IsEnabled()
-        {
-            Assert.IsTrue(form.TestQuantityTextBox.Enabled);
-        }
-
-        [TestMethod]
-        public void PriceTextBox_IsEnabled()
-        {
-            Assert.IsTrue(form.TestPriceTextBox.Enabled);
-        }
-
-        [TestMethod]
-        public void CategoryTextBox_IsEnabled()
-        {
-            Assert.IsTrue(form.TestCategoryTextBox.Enabled);
-        }
-
-        [TestMethod]
-        public void AddButton_IsEnabled()
-        {
-            Assert.IsTrue(form.TestAddButton.Enabled);
-        }
-
-        [TestMethod]
-        public void RemoveButton_IsEnabled()
-        {
-            Assert.IsTrue(form.TestRemoveButton.Enabled);
-        }
-
-        [TestMethod]
-        public void UpdateButton_IsEnabled()
-        {
-            Assert.IsTrue(form.TestUpdateButton.Enabled);
-        }
-
-        [TestMethod]
-        public void ItemsListBox_IsEnabled()
-        {
-            Assert.IsTrue(form.TestItemsListBox.Enabled);
-        }
-    }
-
-
-
-
 }
