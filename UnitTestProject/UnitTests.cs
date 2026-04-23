@@ -247,14 +247,9 @@ namespace UnitTestProject
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddItem_Null_ThrowsException()
         {
-            InventoryItem item = null;
+            InventoryItem item = null; // чтобы пройти проверку на нулл
             manager.AddItem(item);
         }
-
-
-
-
-
     }
 
 
