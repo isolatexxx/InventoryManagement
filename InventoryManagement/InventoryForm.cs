@@ -157,6 +157,10 @@ namespace InventoryManagement
             {
                 MessageBox.Show(ex.Message);
             }
+            nameTextBox.Text = string.Empty;
+            quantityTextBox.Text = string.Empty;
+            priceTextBox.Text = string.Empty;
+            categoryTextBox.Text = string.Empty;
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -186,6 +190,10 @@ namespace InventoryManagement
                     }
                 }
             }
+            nameTextBox.Text = string.Empty;
+            quantityTextBox.Text = string.Empty;
+            priceTextBox.Text = string.Empty;
+            categoryTextBox.Text = string.Empty;
         }
 
         private void UpdateItemButton_Click(object sender, EventArgs e)
@@ -261,6 +269,10 @@ namespace InventoryManagement
             {
                 MessageBox.Show("Не удалось разобрать данные товара!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            nameTextBox.Text = string.Empty;
+            quantityTextBox.Text = string.Empty;
+            priceTextBox.Text = string.Empty;
+            categoryTextBox.Text = string.Empty;
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
