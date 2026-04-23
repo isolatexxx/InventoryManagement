@@ -13,6 +13,18 @@ public class InventoryItem
 
     public InventoryItem(string name, int quantity, decimal price, string category)
     {
+        if (quantity < 0)
+            throw new ArgumentException("Количество не может быть отрицательным!");
+
+        if (price < 0)
+            throw new ArgumentException("Цена не может быть отрицательной!");
+
+        if (string.IsNullOrEmpty(name))
+            throw new ArgumentException("Название не может быть пустым!");
+
+        if (string.IsNullOrEmpty(category))
+            throw new ArgumentException("Категория не может быть пустой!");
+
         Name = name;
         Quantity = quantity;
         Price = price;
