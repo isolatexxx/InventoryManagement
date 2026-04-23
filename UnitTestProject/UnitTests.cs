@@ -86,8 +86,8 @@ namespace UnitTestProject
             form.AddItem("Боксерские бинты", "30", "1500", "Бокс");
             Assert.AreEqual(1, form.ReturnItemsCount(), "Товар должен добавиться перед тестом");
             form.SelectItem(0);
-            form.quantityTextBox.Text = "50";
-            form.priceTextBox.Text = "2000";    
+            form.TestQuantityTextBox.Text = "50";
+            form.TestPriceTextBox.Text = "2000";    
             form.UpdateItem();
             var items = form.GetAllItems();
             Assert.AreEqual(1, items.Count, "Количество товаров не должно измениться");
@@ -127,8 +127,8 @@ namespace UnitTestProject
         {
             form.AddItem("Тестовый товар", "10", "100", "Тест");
             form.SelectItem(0);
-            form.quantityTextBox.Text = "";
-            form.priceTextBox.Text = "";
+            form.TestQuantityTextBox.Text = "";
+            form.TestPriceTextBox.Text = "";
             form.UpdateItem(); // MessageBox вылетит об успешном обновлении товара но цена и кол-во останется прежней
             var items = form.GetAllItems();
             Assert.AreEqual(10, items[0].Quantity, "Количество не должно измениться");
@@ -249,6 +249,66 @@ namespace UnitTestProject
         {
             InventoryItem item = null; // чтобы пройти проверку на нулл
             manager.AddItem(item);
+        }
+    }
+
+    [TestClass]
+    public class UnitTestsUIElements
+    {
+        private InventoryForm form;
+
+        [TestInitialize]
+        public void Setup()
+        {
+            form = new InventoryForm();
+        }
+
+        [TestMethod]
+        public void NameTextBox_IsEnabled()
+        {
+            Assert.IsTrue(form.TestNameTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void QuantityTextBox_IsEnabled()
+        {
+            Assert.IsTrue(form.TestQuantityTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void PriceTextBox_IsEnabled()
+        {
+            Assert.IsTrue(form.TestPriceTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void CategoryTextBox_IsEnabled()
+        {
+            Assert.IsTrue(form.TestCategoryTextBox.Enabled);
+        }
+
+        [TestMethod]
+        public void AddButton_IsEnabled()
+        {
+            Assert.IsTrue(form.TestAddButton.Enabled);
+        }
+
+        [TestMethod]
+        public void RemoveButton_IsEnabled()
+        {
+            Assert.IsTrue(form.TestRemoveButton.Enabled);
+        }
+
+        [TestMethod]
+        public void UpdateButton_IsEnabled()
+        {
+            Assert.IsTrue(form.TestUpdateButton.Enabled);
+        }
+
+        [TestMethod]
+        public void ItemsListBox_IsEnabled()
+        {
+            Assert.IsTrue(form.TestItemsListBox.Enabled);
         }
     }
 
