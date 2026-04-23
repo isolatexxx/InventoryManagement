@@ -16,18 +16,18 @@ namespace InventoryManagement
     public partial class InventoryForm : Form
     {
         private InventoryManager inventoryManager;
-        private Label nameLabel;
-        private Label quantityLabel;
-        private Label priceLabel;
-        private Label categoryLabel;
-        private TextBox nameTextBox;
-        private TextBox quantityTextBox;
-        private TextBox priceTextBox;
-        private TextBox categoryTextBox;
-        private Button addItemButton;
-        private Button removeItemButton;
-        private Button updateItemButton;
-        private ListBox itemsListBox;
+        //private Label nameLabel;
+        //private Label quantityLabel;
+        //private Label priceLabel;
+        //private Label categoryLabel;
+        //private TextBox nameTextBox;
+        //private TextBox quantityTextBox;
+        //private TextBox priceTextBox;
+        //private TextBox categoryTextBox;
+        //private Button addItemButton;
+        //private Button removeItemButton;
+        //private Button updateItemButton;
+        //private ListBox itemsListBox;
 
         //public InventoryManager inventoryManager;
         //public Label nameLabel;
@@ -56,131 +56,7 @@ namespace InventoryManagement
 
         public InventoryForm()
         {
-            this.Text = "Управление инвентарём";
-            this.Width = 500;
-            this.Height = 400;
-
-            nameLabel = new Label
-            {
-                Location = new Point(10, 10),
-                Text = "Название",
-                Width = 150,
-                Visible = true,
-                Enabled = true
-            };
-
-            quantityLabel = new Label
-            {
-                Location = new Point(170, 10),
-                Width = 80,
-                Text = "Количество",
-                Visible = true,
-                Enabled = true
-            };
-
-            priceLabel = new Label
-            {
-                Location = new Point(260, 10),
-                Width = 100,
-                Text = "Цена",
-                Visible = true,
-                Enabled = true
-            };
-
-            categoryLabel = new Label
-            {
-                Location = new Point(370, 10),
-                Width = 100,
-                Text = "Категория",
-                Visible = true,
-                Enabled = true
-            };
-
-            nameTextBox = new TextBox
-            {
-                Location = new Point(10, 30),
-                Width = 150,
-                Visible = true,
-                Enabled = true
-            };
-
-            quantityTextBox = new TextBox
-            {
-                Location = new Point(170, 30),
-                Width = 80,
-                Visible = true,
-                Enabled = true
-            };
-
-            priceTextBox = new TextBox
-            {
-                Location = new Point(260, 30),
-                Width = 100,
-                Visible = true,
-                Enabled = true
-            };
-
-            categoryTextBox = new TextBox
-            {
-                Location = new Point(370, 30),
-                Width = 100,
-                Visible = true,
-                Enabled = true
-            };
-
-            addItemButton = new Button
-            {
-                Location = new Point(10, 60),
-                Text = "Добавить",
-                Width = 100,
-                Visible = true,
-                Enabled = true
-            };
-            addItemButton.Click += AddItemButton_Click;
-
-            removeItemButton = new Button
-            {
-                Location = new Point(110, 60),
-                Text = "Удалить",
-                Width = 100,
-                Visible = true,
-                Enabled = true
-            };
-            removeItemButton.Click += RemoveItemButton_Click;
-
-            updateItemButton = new Button
-            {
-                Location = new Point(210, 60),
-                Text = "Обновить",
-                Width = 100,
-                Visible = true,
-                Enabled = true
-            };
-            updateItemButton.Click += UpdateItemButton_Click;
-
-            itemsListBox = new ListBox
-            {
-                Location = new Point(10, 90),
-                Width = 460,
-                Height = 200,
-                Visible = true,
-                Enabled = true
-            };
-            itemsListBox.SelectedIndexChanged += ItemsListBox_SelectedIndexChanged;
-
-            Controls.Add(nameTextBox);
-            Controls.Add(quantityTextBox);
-            Controls.Add(priceTextBox);
-            Controls.Add(categoryTextBox);
-            Controls.Add(addItemButton);
-            Controls.Add(removeItemButton);
-            Controls.Add(updateItemButton);
-            Controls.Add(itemsListBox);
-            Controls.Add(nameLabel);
-            Controls.Add(quantityLabel);
-            Controls.Add(priceLabel);
-            Controls.Add(categoryLabel);
-
+            InitializeComponent();  // вызывает дизайнер
             inventoryManager = new InventoryManager();
             UpdateItemsList();
         }
