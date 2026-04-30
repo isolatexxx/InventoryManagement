@@ -250,10 +250,14 @@ namespace InventoryManagement
 
             if (parts.Length >= 4)
             {
+                string name = parts[0].Replace("Название: ", "").Trim();
                 string quantityStr = parts[1].Replace("Количество: ", "").Trim(); // кол-во
                 string priceStr = parts[2].Replace("Цена: ", "").Replace(" руб.", "").Trim(); // цена
+                string category = parts[3].Replace("Категория: ", "").Trim();
+                nameTextBox.Text = name;
                 quantityTextBox.Text = quantityStr;
                 priceTextBox.Text = priceStr;
+                categoryTextBox.Text = category;
             }
         }
     }
