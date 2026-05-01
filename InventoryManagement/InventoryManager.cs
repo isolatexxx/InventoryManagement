@@ -55,6 +55,24 @@ namespace InventoryManagement
             item.Price = newPrice;
             SaveItems();
         }
+        public void UpdateItemName (InventoryItem item, string newName)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+            item.Name = newName;
+            SaveItems();
+        }
+        public void UpdateItemCategory (InventoryItem item, string newCategory)
+        {
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+            item.Category = newCategory;
+            SaveItems();
+        }
 
         private void SaveItems()
         {

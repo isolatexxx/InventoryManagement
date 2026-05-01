@@ -187,6 +187,12 @@ namespace InventoryManagement
 
                 bool hasError = false;
 
+                if (!string.IsNullOrEmpty(nameTextBox.Text))
+                {
+                    string newName = nameTextBox.Text.Trim();
+                    inventoryManager.UpdateItemName(itemToUpdate, newName);
+                }
+
                 if (!string.IsNullOrEmpty(quantityTextBox.Text))
                 {
                     if (!int.TryParse(quantityTextBox.Text, out int newQuantity))
@@ -223,11 +229,19 @@ namespace InventoryManagement
                     }
                 }
 
+                if (!string.IsNullOrEmpty(categoryTextBox.Text))
+                {
+                    string newCategory = categoryTextBox.Text.Trim();
+                    inventoryManager.UpdateItemCategory(itemToUpdate, newCategory);
+                }
+
                 if (!hasError)
                 {
                     UpdateItemsList();
+                    nameTextBox.Clear();
                     quantityTextBox.Clear();
                     priceTextBox.Clear();
+                    categoryTextBox.Clear();
                     MessageBox.Show("Товар успешно обновлён!", "Успех!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
@@ -235,10 +249,6 @@ namespace InventoryManagement
             {
                 MessageBox.Show("Не удалось разобрать данные товара!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            nameTextBox.Text = string.Empty;
-            quantityTextBox.Text = string.Empty;
-            priceTextBox.Text = string.Empty;
-            categoryTextBox.Text = string.Empty;
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)

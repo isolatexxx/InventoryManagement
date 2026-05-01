@@ -55,7 +55,7 @@ namespace InventoryManagement
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(255, 14);
+            this.quantityLabel.Location = new System.Drawing.Point(243, 14);
             this.quantityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quantityLabel.Name = "quantityLabel";
             this.quantityLabel.Size = new System.Drawing.Size(92, 18);
@@ -65,7 +65,7 @@ namespace InventoryManagement
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
-            this.priceLabel.Location = new System.Drawing.Point(390, 14);
+            this.priceLabel.Location = new System.Drawing.Point(369, 14);
             this.priceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.priceLabel.Name = "priceLabel";
             this.priceLabel.Size = new System.Drawing.Size(43, 18);
@@ -75,7 +75,7 @@ namespace InventoryManagement
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(555, 14);
+            this.categoryLabel.Location = new System.Drawing.Point(525, 14);
             this.categoryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.categoryLabel.Name = "categoryLabel";
             this.categoryLabel.Size = new System.Drawing.Size(80, 18);
@@ -92,7 +92,7 @@ namespace InventoryManagement
             // 
             // quantityTextBox
             // 
-            this.quantityTextBox.Location = new System.Drawing.Point(255, 42);
+            this.quantityTextBox.Location = new System.Drawing.Point(246, 42);
             this.quantityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.quantityTextBox.Name = "quantityTextBox";
             this.quantityTextBox.Size = new System.Drawing.Size(118, 24);
@@ -100,7 +100,7 @@ namespace InventoryManagement
             // 
             // priceTextBox
             // 
-            this.priceTextBox.Location = new System.Drawing.Point(390, 42);
+            this.priceTextBox.Location = new System.Drawing.Point(372, 42);
             this.priceTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.priceTextBox.Name = "priceTextBox";
             this.priceTextBox.Size = new System.Drawing.Size(148, 24);
@@ -108,7 +108,7 @@ namespace InventoryManagement
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(555, 42);
+            this.categoryTextBox.Location = new System.Drawing.Point(528, 42);
             this.categoryTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.categoryTextBox.Name = "categoryTextBox";
             this.categoryTextBox.Size = new System.Drawing.Size(148, 24);
@@ -154,7 +154,7 @@ namespace InventoryManagement
             this.itemsListBox.Location = new System.Drawing.Point(15, 125);
             this.itemsListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(688, 220);
+            this.itemsListBox.Size = new System.Drawing.Size(661, 220);
             this.itemsListBox.TabIndex = 11;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -162,7 +162,7 @@ namespace InventoryManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(717, 359);
+            this.ClientSize = new System.Drawing.Size(696, 359);
             this.Controls.Add(this.itemsListBox);
             this.Controls.Add(this.updateItemButton);
             this.Controls.Add(this.removeItemButton);
