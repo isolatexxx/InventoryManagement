@@ -45,81 +45,81 @@ namespace InventoryManagement
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(13, 12);
+            this.nameLabel.Location = new System.Drawing.Point(15, 14);
             this.nameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(73, 16);
+            this.nameLabel.Size = new System.Drawing.Size(75, 18);
             this.nameLabel.TabIndex = 0;
             this.nameLabel.Text = "Название";
             // 
             // quantityLabel
             // 
             this.quantityLabel.AutoSize = true;
-            this.quantityLabel.Location = new System.Drawing.Point(227, 12);
+            this.quantityLabel.Location = new System.Drawing.Point(243, 14);
             this.quantityLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.quantityLabel.Name = "quantityLabel";
-            this.quantityLabel.Size = new System.Drawing.Size(85, 16);
+            this.quantityLabel.Size = new System.Drawing.Size(92, 18);
             this.quantityLabel.TabIndex = 1;
             this.quantityLabel.Text = "Количество";
             // 
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
-            this.priceLabel.Location = new System.Drawing.Point(347, 12);
+            this.priceLabel.Location = new System.Drawing.Point(369, 14);
             this.priceLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(40, 16);
+            this.priceLabel.Size = new System.Drawing.Size(43, 18);
             this.priceLabel.TabIndex = 2;
             this.priceLabel.Text = "Цена";
             // 
             // categoryLabel
             // 
             this.categoryLabel.AutoSize = true;
-            this.categoryLabel.Location = new System.Drawing.Point(493, 12);
+            this.categoryLabel.Location = new System.Drawing.Point(525, 14);
             this.categoryLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.categoryLabel.Name = "categoryLabel";
-            this.categoryLabel.Size = new System.Drawing.Size(75, 16);
+            this.categoryLabel.Size = new System.Drawing.Size(80, 18);
             this.categoryLabel.TabIndex = 3;
             this.categoryLabel.Text = "Категория";
             // 
             // nameTextBox
             // 
-            this.nameTextBox.Location = new System.Drawing.Point(13, 37);
-            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.nameTextBox.Location = new System.Drawing.Point(15, 42);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.nameTextBox.Name = "nameTextBox";
-            this.nameTextBox.Size = new System.Drawing.Size(199, 22);
+            this.nameTextBox.Size = new System.Drawing.Size(223, 24);
             this.nameTextBox.TabIndex = 4;
             // 
             // quantityTextBox
             // 
-            this.quantityTextBox.Location = new System.Drawing.Point(227, 37);
-            this.quantityTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.quantityTextBox.Location = new System.Drawing.Point(246, 42);
+            this.quantityTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.quantityTextBox.Name = "quantityTextBox";
-            this.quantityTextBox.Size = new System.Drawing.Size(105, 22);
+            this.quantityTextBox.Size = new System.Drawing.Size(118, 24);
             this.quantityTextBox.TabIndex = 5;
             // 
             // priceTextBox
             // 
-            this.priceTextBox.Location = new System.Drawing.Point(347, 37);
-            this.priceTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.priceTextBox.Location = new System.Drawing.Point(372, 42);
+            this.priceTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.priceTextBox.Name = "priceTextBox";
-            this.priceTextBox.Size = new System.Drawing.Size(132, 22);
+            this.priceTextBox.Size = new System.Drawing.Size(148, 24);
             this.priceTextBox.TabIndex = 6;
             // 
             // categoryTextBox
             // 
-            this.categoryTextBox.Location = new System.Drawing.Point(493, 37);
-            this.categoryTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.categoryTextBox.Location = new System.Drawing.Point(528, 42);
+            this.categoryTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.categoryTextBox.Name = "categoryTextBox";
-            this.categoryTextBox.Size = new System.Drawing.Size(132, 22);
+            this.categoryTextBox.Size = new System.Drawing.Size(148, 24);
             this.categoryTextBox.TabIndex = 7;
             // 
             // addItemButton
             // 
-            this.addItemButton.Location = new System.Drawing.Point(13, 74);
-            this.addItemButton.Margin = new System.Windows.Forms.Padding(4);
+            this.addItemButton.Location = new System.Drawing.Point(15, 83);
+            this.addItemButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addItemButton.Name = "addItemButton";
-            this.addItemButton.Size = new System.Drawing.Size(133, 28);
+            this.addItemButton.Size = new System.Drawing.Size(150, 32);
             this.addItemButton.TabIndex = 8;
             this.addItemButton.Text = "Добавить";
             this.addItemButton.UseVisualStyleBackColor = true;
@@ -127,10 +127,10 @@ namespace InventoryManagement
             // 
             // removeItemButton
             // 
-            this.removeItemButton.Location = new System.Drawing.Point(147, 74);
-            this.removeItemButton.Margin = new System.Windows.Forms.Padding(4);
+            this.removeItemButton.Location = new System.Drawing.Point(165, 83);
+            this.removeItemButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.removeItemButton.Name = "removeItemButton";
-            this.removeItemButton.Size = new System.Drawing.Size(133, 28);
+            this.removeItemButton.Size = new System.Drawing.Size(150, 32);
             this.removeItemButton.TabIndex = 9;
             this.removeItemButton.Text = "Удалить";
             this.removeItemButton.UseVisualStyleBackColor = true;
@@ -138,10 +138,10 @@ namespace InventoryManagement
             // 
             // updateItemButton
             // 
-            this.updateItemButton.Location = new System.Drawing.Point(280, 74);
-            this.updateItemButton.Margin = new System.Windows.Forms.Padding(4);
+            this.updateItemButton.Location = new System.Drawing.Point(315, 83);
+            this.updateItemButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.updateItemButton.Name = "updateItemButton";
-            this.updateItemButton.Size = new System.Drawing.Size(133, 28);
+            this.updateItemButton.Size = new System.Drawing.Size(150, 32);
             this.updateItemButton.TabIndex = 10;
             this.updateItemButton.Text = "Обновить";
             this.updateItemButton.UseVisualStyleBackColor = true;
@@ -150,19 +150,19 @@ namespace InventoryManagement
             // itemsListBox
             // 
             this.itemsListBox.FormattingEnabled = true;
-            this.itemsListBox.ItemHeight = 16;
-            this.itemsListBox.Location = new System.Drawing.Point(13, 111);
-            this.itemsListBox.Margin = new System.Windows.Forms.Padding(4);
+            this.itemsListBox.ItemHeight = 18;
+            this.itemsListBox.Location = new System.Drawing.Point(15, 125);
+            this.itemsListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.itemsListBox.Name = "itemsListBox";
-            this.itemsListBox.Size = new System.Drawing.Size(612, 196);
+            this.itemsListBox.Size = new System.Drawing.Size(661, 220);
             this.itemsListBox.TabIndex = 11;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
             // InventoryForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(667, 332);
+            this.ClientSize = new System.Drawing.Size(696, 359);
             this.Controls.Add(this.itemsListBox);
             this.Controls.Add(this.updateItemButton);
             this.Controls.Add(this.removeItemButton);
@@ -175,8 +175,9 @@ namespace InventoryManagement
             this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.quantityLabel);
             this.Controls.Add(this.nameLabel);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "InventoryForm";

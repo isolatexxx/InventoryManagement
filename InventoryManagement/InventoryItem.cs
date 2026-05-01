@@ -25,10 +25,10 @@ public class InventoryItem
         if (string.IsNullOrEmpty(category))
             throw new ArgumentException("Категория не может быть пустой!");
 
-        Name = name;
+        Name = name.Trim();
         Quantity = quantity;
         Price = price;
-        Category = category;
+        Category = category.Trim();
     }
 
     public bool IsAvailable ()
