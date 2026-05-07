@@ -17,8 +17,13 @@ namespace InventoryManagement
     {
         private InventoryManager inventoryManager;
 
-        // для UI тестов (только геттеры)
-        public TextBox TestNameTextBox => nameTextBox;
+        public TextBox TestNameTextBox 
+        {
+            get
+            {
+                return nameTextBox;
+            }
+        }
         public TextBox TestQuantityTextBox => quantityTextBox;
         public TextBox TestPriceTextBox => priceTextBox;
         public TextBox TestCategoryTextBox => categoryTextBox;
