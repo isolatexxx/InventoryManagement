@@ -17,8 +17,13 @@ namespace InventoryManagement
     {
         private InventoryManager inventoryManager;
 
-        // для UI тестов (только геттеры)
-        public TextBox TestNameTextBox => nameTextBox;
+        public TextBox TestNameTextBox 
+        {
+            get
+            {
+                return nameTextBox;
+            }
+        }
         public TextBox TestQuantityTextBox => quantityTextBox;
         public TextBox TestPriceTextBox => priceTextBox;
         public TextBox TestCategoryTextBox => categoryTextBox;
@@ -109,6 +114,13 @@ namespace InventoryManagement
                 return;
             }
 
+            string name = nameTextBox.Text.Trim();
+            if (inventoryManager.Items.Any(i => i.Name == name))
+            {
+                MessageBox.Show("Имя инвентаря не уникально!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             InventoryItem newItem = new InventoryItem(nameTextBox.Text, quantity, price, categoryTextBox.Text);
             try
             {
@@ -176,8 +188,15 @@ namespace InventoryManagement
 
             if (parts.Length >= 4)
             {
-                string name = parts[0].Replace("Название: ", "").Trim();
-                var itemToUpdate = inventoryManager.Items.Find(i => i.Name == name);
+                string oldName = parts[0].Replace("Название: ", "").Trim();
+                string newName = nameTextBox.Text.Trim();
+                var itemToUpdate = inventoryManager.Items.Find(i => i.Name == oldName);
+
+                if (oldName != newName && inventoryManager.Items.Any(i => i.Name == newName))
+                {
+                    MessageBox.Show("Имя инвентаря не уникально!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (itemToUpdate == null)
                 {
@@ -189,7 +208,6 @@ namespace InventoryManagement
 
                 if (!string.IsNullOrEmpty(nameTextBox.Text))
                 {
-                    string newName = nameTextBox.Text.Trim();
                     inventoryManager.UpdateItemName(itemToUpdate, newName);
                 }
 
