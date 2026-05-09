@@ -114,6 +114,13 @@ namespace InventoryManagement
                 return;
             }
 
+            string name = nameTextBox.Text.Trim();
+            if (inventoryManager.Items.Any(i => i.Name == name))
+            {
+                MessageBox.Show("Имя инвентаря не уникально!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             InventoryItem newItem = new InventoryItem(nameTextBox.Text, quantity, price, categoryTextBox.Text);
             try
             {
@@ -182,7 +189,14 @@ namespace InventoryManagement
             if (parts.Length >= 4)
             {
                 string name = parts[0].Replace("Название: ", "").Trim();
+                string newName = nameTextBox.Text.Trim();
                 var itemToUpdate = inventoryManager.Items.Find(i => i.Name == name);
+
+                if (inventoryManager.Items.Any(i => i.Name == newName))
+                {
+                    MessageBox.Show("Имя инвентаря не уникально!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
 
                 if (itemToUpdate == null)
                 {
@@ -194,7 +208,7 @@ namespace InventoryManagement
 
                 if (!string.IsNullOrEmpty(nameTextBox.Text))
                 {
-                    string newName = nameTextBox.Text.Trim();
+                    // string newName = nameTextBox.Text.Trim();
                     inventoryManager.UpdateItemName(itemToUpdate, newName);
                 }
 
