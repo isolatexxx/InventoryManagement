@@ -188,11 +188,11 @@ namespace InventoryManagement
 
             if (parts.Length >= 4)
             {
-                string name = parts[0].Replace("Название: ", "").Trim();
+                string oldName = parts[0].Replace("Название: ", "").Trim();
                 string newName = nameTextBox.Text.Trim();
-                var itemToUpdate = inventoryManager.Items.Find(i => i.Name == name);
+                var itemToUpdate = inventoryManager.Items.Find(i => i.Name == oldName);
 
-                if (inventoryManager.Items.Any(i => i.Name == newName))
+                if (oldName != newName && inventoryManager.Items.Any(i => i.Name == newName))
                 {
                     MessageBox.Show("Имя инвентаря не уникально!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -208,7 +208,6 @@ namespace InventoryManagement
 
                 if (!string.IsNullOrEmpty(nameTextBox.Text))
                 {
-                    // string newName = nameTextBox.Text.Trim();
                     inventoryManager.UpdateItemName(itemToUpdate, newName);
                 }
 
