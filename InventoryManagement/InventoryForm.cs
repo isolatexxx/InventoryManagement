@@ -37,8 +37,9 @@ namespace InventoryManagement
             InitializeComponent();  // вызывает дизайнер
             inventoryManager = new InventoryManager();
             UpdateItemsList();
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
         }
-
+            
         public List<InventoryItem> GetAllItems()
         {
             return inventoryManager.Items;
@@ -289,6 +290,19 @@ namespace InventoryManagement
             }
         }
 
+
+        private bool isExiting = false;
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!isExiting)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+            base.OnFormClosing(e);
+        }
+
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             this.Show();
@@ -301,16 +315,30 @@ namespace InventoryManagement
             this.WindowState = FormWindowState.Normal;
         }
 
-        ContextMenuStrip menu = new ContextMenuStrip();
-
         private void showItem_Click(object sender, EventArgs e)
         {
-
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void exitItem_Click(object sender, EventArgs e)
         {
+            isExiting = true;
+            notifyIcon1.Visible = false;
+            Application.Exit();
+        }
 
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void tsmItemSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Owner = this;
+            settings.ShowDialog();
         }
     }
 }
