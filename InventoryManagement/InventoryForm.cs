@@ -288,5 +288,29 @@ namespace InventoryManagement
                 categoryTextBox.Text = category;
             }
         }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        ContextMenuStrip menu = new ContextMenuStrip();
+
+        private void showItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void exitItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

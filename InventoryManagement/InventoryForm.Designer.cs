@@ -27,6 +27,7 @@ namespace InventoryManagement
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(InventoryForm));
             this.nameLabel = new System.Windows.Forms.Label();
             this.quantityLabel = new System.Windows.Forms.Label();
@@ -40,6 +41,12 @@ namespace InventoryManagement
             this.removeItemButton = new System.Windows.Forms.Button();
             this.updateItemButton = new System.Windows.Forms.Button();
             this.itemsListBox = new System.Windows.Forms.ListBox();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -158,6 +165,36 @@ namespace InventoryManagement
             this.itemsListBox.TabIndex = 11;
             this.itemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
+            this.notifyIcon1.Text = "Управление инвентарем";
+            this.notifyIcon1.Visible = true;
+            this.notifyIcon1.BalloonTipClicked += new System.EventHandler(this.notifyIcon1_BalloonTipClicked);
+            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseClick);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showItem,
+            this.exitItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 70);
+            // 
+            // showItem
+            // 
+            this.showItem.Name = "showItem";
+            this.showItem.Size = new System.Drawing.Size(180, 22);
+            this.showItem.Text = "Открыть";
+            this.showItem.Click += new System.EventHandler(this.showItem_Click);
+            // 
+            // exitItem
+            // 
+            this.exitItem.Name = "exitItem";
+            this.exitItem.Size = new System.Drawing.Size(180, 22);
+            this.exitItem.Text = "Выход";
+            this.exitItem.Click += new System.EventHandler(this.exitItem_Click);
+            // 
             // InventoryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,10 +216,10 @@ namespace InventoryManagement
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.MinimizeBox = false;
             this.Name = "InventoryForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Управление инвентарём";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +239,10 @@ namespace InventoryManagement
         private System.Windows.Forms.Button removeItemButton;
         private System.Windows.Forms.Button updateItemButton;
         private System.Windows.Forms.ListBox itemsListBox;
+        private NotifyIcon notifyIcon1;
+        private Timer timer1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem showItem;
+        private ToolStripMenuItem exitItem;
     }
 }
