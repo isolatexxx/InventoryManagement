@@ -32,13 +32,22 @@ namespace InventoryManagement
         public Button TestUpdateButton => updateItemButton;
         public ListBox TestItemsListBox => itemsListBox;
 
+        private int notificationInterval;
+        private int lowStock;
+
         public InventoryForm()
         {
             InitializeComponent();  // вызывает дизайнер
+
+            notificationInterval = Properties.Settings.Default.timeInterval;
+            lowStock = Properties.Settings.Default.minQuantity;
+            timer1.Start();
+
             inventoryManager = new InventoryManager();
             UpdateItemsList();
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
         }
-
+            
         public List<InventoryItem> GetAllItems()
         {
             return inventoryManager.Items;
@@ -288,5 +297,99 @@ namespace InventoryManagement
                 categoryTextBox.Text = category;
             }
         }
+
+
+        private bool isExiting = false;
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!isExiting)
+            {
+                e.Cancel = true;
+                this.Hide();
+            }
+            base.OnFormClosing(e);
+        }
+
+        private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void notifyIcon1_BalloonTipClicked(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void showItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void exitItem_Click(object sender, EventArgs e)
+        {
+            isExiting = true;
+            notifyIcon1.Visible = false;
+            Application.Exit();
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+        }
+
+        private void tsmItemSettings_Click(object sender, EventArgs e)
+        {
+            Settings settings = new Settings();
+            settings.Owner = this;
+            settings.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            notificationInterval = Properties.Settings.Default.timeInterval;
+            lowStock = Properties.Settings.Default.minQuantity;
+
+            if (timer1.Interval != notificationInterval)
+            {
+                timer1.Interval = notificationInterval;
+            }
+
+            string message = "";
+            foreach (var item in inventoryManager.Items)
+            {
+                if (item.Quantity <= lowStock)
+                {
+                    if (notifyIcon1 == null) return;
+
+                    if (item.Quantity <= lowStock)
+                    {
+                        message += $"{item.Name} (осталось: {item.Quantity})\n";
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(message) && notifyIcon1 != null && notifyIcon1.Visible)
+            {
+                notifyIcon1.ShowBalloonTip(2000, "Низкий уровень запасов!", message.Trim(), ToolTipIcon.Warning);
+            }
+        }
+
+        public void RefreshSettings()
+        {
+            notificationInterval = Properties.Settings.Default.timeInterval;
+            lowStock = Properties.Settings.Default.minQuantity;
+
+            if (timer1 != null)
+            {
+                timer1.Interval = notificationInterval;
+            }
+        }
+
+
+
     }
 }
