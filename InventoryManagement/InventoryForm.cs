@@ -388,8 +388,5 @@ namespace InventoryManagement
                 timer1.Interval = notificationInterval;
             }
         }
-
-
-
     }
 }
