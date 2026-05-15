@@ -50,6 +50,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UnitTestsNotifications.cs" />
     <Compile Include="UnitTestsUIElements.cs" />
     <Compile Include="UnitTestsInventoryManager.cs" />
     <Compile Include="UnitTestsInventoryItem.cs" />
