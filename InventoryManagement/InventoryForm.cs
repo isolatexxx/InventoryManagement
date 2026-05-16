@@ -388,5 +388,54 @@ namespace InventoryManagement
                 timer1.Interval = notificationInterval;
             }
         }
+
+
+        // Методы для тестирования уведомлений
+        // получаем список товаров с низким запасом
+        public List<InventoryItem> GetLowStockItems(int threshold)
+        {
+            List<InventoryItem> result = new List<InventoryItem>();
+            foreach (var item in inventoryManager.Items)
+            {
+                if (item.Quantity <= threshold)
+                {
+                    result.Add(item);
+                }
+            }
+            return result;
+        }
+
+        // получаем сообщение для уведомления
+        public string GetLowStockMessage(int threshold)
+        {
+            string message = "";
+            foreach (var item in inventoryManager.Items)
+            {
+                if (item.Quantity <= threshold)
+                {
+                    message = message + item.Name + " (осталось: " + item.Quantity + ")\n";
+                }
+            }
+            return message;
+        }
+
+        // проверяем приходит ли уведомление
+        public bool ShouldShowLowStockNotification(int threshold)
+        {
+            foreach (var item in inventoryManager.Items)
+            {
+                if (item.Quantity <= threshold)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // передаем кол-во товара как текст
+        public void QuantityToText(string text)
+        {
+            quantityTextBox.Text = text;
+        }
     }
 }
