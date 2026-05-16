@@ -14,6 +14,8 @@ namespace UnitTestProject
     [TestClass]
     public class UnitTestsNotifications
     {
+        // Уведомления не приходят из за того что в тетовой среде нет цикла сообщений виндовс (application.run)
+
         private InventoryForm form;
 
         [TestInitialize]
