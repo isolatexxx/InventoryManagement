@@ -57,14 +57,8 @@ namespace UnitTestProject
         public void TestCleanup()
         {
             // Закрытие приложения
-            if (automation != null)
-            {
-                automation.Dispose();
-            }
-            if (app != null)
-            {
-                app.Close();
-            }
+            if (automation != null) { automation.Dispose(); }
+            if (app != null) { app.Close(); }
 
             System.Threading.Thread.Sleep(500);
         }
