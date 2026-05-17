@@ -114,7 +114,7 @@ namespace UnitTestProject
         [TestMethod]
         public void RemoveButton_Click_WhenItemSelectedButAlreadyDeleted_ShowsError()
         {
-            form.AddItem("Тестовый товар", "10", "100", "Тест");
+            form.AddItem("Тестовый товар1", "10", "100", "Тест");
             form.SelectItem(0);
             form.RemoveItem();
             Assert.AreEqual(0, form.ReturnItemsCount());
@@ -125,7 +125,7 @@ namespace UnitTestProject
         [TestMethod]
         public void UpdateButton_Click_WhenItemSelectedButFieldsEmpty_ShowsError()
         {
-            form.AddItem("Тестовый товар", "10", "100", "Тест");
+            form.AddItem("Тестовый товар2", "10", "100", "Тест");
             form.SelectItem(0);
             form.TestQuantityTextBox.Text = "";
             form.TestPriceTextBox.Text = "";
